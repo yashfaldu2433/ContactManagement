@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.app');
+});
+
+
+Route::prefix('contacts')->name('contacts.')->controller(ContactController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/list-ajax', 'listAjax')->name('listAjax');
+    Route::get('/create', 'create')->name('create');
+    Route::get('/{id}/edit', 'edit')->name('edit');
+    Route::post('/{id}/update', 'update')->name('update');
+    Route::post('/save', 'saveContactData')->name('save');
+    Route::delete('/{id}/delete', 'delete')->name('delete');
+    Route::delete('/documents/{id}', 'deleteDocument')->name('deleteDocument');
 });

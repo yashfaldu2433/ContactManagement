@@ -7,8 +7,6 @@ use Spatie\Permission\Traits\HasRoles;
 
 class Role extends Model
 {
-    use HasRoles;
-
     /**
      * The attributes that are mass assignable.
      *
